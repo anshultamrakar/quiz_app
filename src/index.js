@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FrontPage from './FrontPage';
+import App from './App'
 import './index.css';
+import {BrowserRouter as Router, Routes, Route  } from "react-router-dom";
+
 
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <FrontPage/>
+    <Router>
+     <Routes>
+       <Route path = "/*" element = {<App/>}/>
+     </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

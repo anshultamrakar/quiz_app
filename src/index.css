@@ -5,24 +5,31 @@
 }
 
 html{
-    font-size: 22px;
-}
-
-.Body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-size: 16px;
 }
 
 .Header{
     width: 100%;
 }
 
-.Main{ 
-    min-height: 100vh;
+.App{ 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+ .Form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 50px;
+    width : 100vh;
+} 
+
+.button{
+    border-radius: 50px;
+    background-color: brown;
 }

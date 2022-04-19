@@ -1,0 +1,37 @@
+[
+    {
+            "id": 1,
+            "question": "Javascript is an _______ language?.",
+            "options": ["Object-orinted","Object-based","Procedural"],
+            "answer": "Object-orinted",
+            "test": "javascript"
+            },
+            {
+            "id": 2,
+            "question": "Which of the following keywords is used to define a variable in Javascript?.",
+            "options": ["var","let" , "Both 1 & 2"],
+            "answer": "Both 1 & 2",
+            "test": "javascript"
+            },
+            {
+            "id": 3,
+            "question": "Which of the following methods is used to access HTML elements using Javascript?",
+            "options": ["getElementById","getElementByClassName","Both 1 & 2"],
+            "answer": "Both 1 & 2 ",
+            "test": "javascript"
+            },
+            {
+            "id": 4,
+            "question": "Upon encountering empty statements, what does the Javascript Interpreter do?",
+            "options": ["Throw an error","Ignores the statements", "Gives a warning" ],
+            "answer": "Ignores the statements",
+            "test": "javascript"
+            },
+            {
+            "id": 5,
+            "question": "How can a datatype be declared to be a constant type?",
+            "options": ["const","let","var"],
+            "answer": "const",
+            "test": "javascript"
+    }
+]
