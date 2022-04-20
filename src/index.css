@@ -29,7 +29,28 @@ html{
     width : 100vh;
 } 
 
-.button{
-    border-radius: 50px;
-    background-color: brown;
+.mcq{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
 }
+
+.mainForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : 50px;
+}
+
+.progress-btn{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ gap : 10px;
+ margin-top: 80px;
+
+} 

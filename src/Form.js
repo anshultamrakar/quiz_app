@@ -1,11 +1,6 @@
 import React from 'react'
-
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button } from '@material-ui/core';
-import { FormControl}  from '@material-ui/core';
-import { FormControlLabel } from '@material-ui/core';
-import { RadioGroup } from '@material-ui/core';
-import { Radio } from '@material-ui/core';
+import { Button, FormControl, FormControlLabel,RadioGroup,Radio} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 
