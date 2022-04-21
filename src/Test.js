@@ -5,20 +5,26 @@ import Pagination from '@material-ui/lab/Pagination'
 import react from './Data/react.json'
 import javascript from './Data/javascript.json'
 import { useState , useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
 
-const Test = ({formData}) => {
- let navigate = useNavigate()
+
+
+
+
+const Test = ({formData, newHandleSubmit, optionVal , setOptionVal}) => {
+
+
 const [lan]  = useState(formData.language)
 const [count , setCount] = useState(1)
-const [colorO , setColorO] = useState(false)
-const [colorT , setColorT] = useState(false)
-const [colorTh , setColorTh] = useState(false)
-const [colorF , setColorF] = useState(false)
-const [colorFi , setColorFi] = useState(false)
+
+const [color1 , setColor1] = useState(0)
+const [color2 , setColor2] = useState(0)
+const [color3, setColor3] = useState(0)
+const [color4 , setColor4] = useState(0)
+const [color5 , setColor5] = useState(0)
 const [data , setData] = useState([])
-const [optionVal , setOptionVal] = useState([])
+
  
+
 
    
   useEffect(() => {
@@ -30,23 +36,43 @@ const [optionVal , setOptionVal] = useState([])
   },[lan])
 
 
-   const newHandleSubmit = (e) => {
-      e.preventDefault()
-      let path = 'finalscore'
-      navigate(path)
-   }
+ 
 
-  const handleInputValue = (e) => {
+  const handleInputValue = (e, id) => {
      e.preventDefault()
      for(let i = 1 ; i <= 5 ; i++){
       if(e.target.name === 'option'+i){
         optionVal[i-1] = e.target.value
-        setOptionVal([...optionVal])
+       setOptionVal([...optionVal])
+      
     }
      }
+     progressBar(id)
   }
 
 
+
+const progressBar = (attempts) => {
+     if (attempts === 1){
+        setColor1(true)
+     } 
+     if (attempts === 2){
+      setColor2(true)
+   }
+      if (attempts === 3){
+    setColor3(true)
+ }
+      if (attempts === 4){
+  setColor4(true)
+ }
+      if (attempts === 5){
+  setColor5(true)
+    }
+  }
+
+const trigerBtn = (trigger_count) => {
+    setCount(trigger_count)
+}
 
   const handleChange = (event , value)=> {
     setCount(value)
@@ -55,21 +81,20 @@ const [optionVal , setOptionVal] = useState([])
   
 
   return (
-    <form  className='Test'  onSubmit = {newHandleSubmit}>
-      <Grid container className='mainForm' >
-        <Grid className='progress-btn' > 
-
-        <Button style = {{ borderRadius :"20%" , border : "2px solid black"}}>1</Button>
-        <Button style = {{ borderRadius :"20%" , border : "2px solid black"}} >2</Button>
-        <Button style = {{ borderRadius :"20%" , border : "2px solid black"}}>3</Button>
-        <Button style = {{ borderRadius :"20%" , border : "2px solid black"}}>4</Button>
-        <Button style = {{ borderRadius :"20%" , border : "2px solid black"}}>5</Button>
-      </Grid>
+ <form id="submitForm" autoComplete="off"  className='Test'  onSubmit = {newHandleSubmit}>
+      <Grid container className="mainForm" >
+        <Grid className = "progress-bar">
+        <Button variant="contained"  style = {{ backgroundColor : color1 ? "red" : "pink"}} onClick = {() => trigerBtn(1)} >1</Button>
+        <Button variant="contained"  style = {{ backgroundColor : color2 ? "red" : "pink"}} onClick = {() => trigerBtn(2)} >2</Button>
+        <Button variant="contained"  style = {{ backgroundColor : color3 ? "red" : "pink"}} onClick = {() => trigerBtn(3)} >3</Button>
+        <Button variant="contained"  style = {{ backgroundColor : color4 ? "red" : "pink"}} onClick = {() => trigerBtn(4)} >4</Button>
+        <Button variant="contained"  style = {{ backgroundColor : color5 ? "red" : "pink"}} onClick = {() => trigerBtn(5)} >5</Button>
+        </Grid>
           <Grid className='mcq'> 
             {data.map((mcq, index) => count === mcq.id ? (
               <FormControl key = {index} component="fieldset">
-              <FormLabel component="legend">{mcq.id}.{mcq.question}</FormLabel>
-              <RadioGroup id = {"input"+ mcq.id} name = {"option"+ mcq.id}  onChange = {(e) => handleInputValue(e, mcq.id)}>
+              <FormLabel  component="legend">{mcq.id}.{mcq.question}</FormLabel>
+              <RadioGroup id = {"input"+ mcq.id} name = {"option"+ mcq.id}  value= {optionVal[index]} onChange = {(e) => handleInputValue(e, mcq.id)}>
                {mcq.options.map((newData, index) => (
             <FormControlLabel  key = {newData}  value = {newData} control={<Radio size="small" />} label= {newData} ></FormControlLabel>
         ))}
@@ -78,15 +103,14 @@ const [optionVal , setOptionVal] = useState([])
             ) : null)}
           </Grid>
           <Grid> 
-         <Button type = "submit" variant="contained" color="secondary" > Submit </Button>
+            <Button type = "submit" variant="contained" color="secondary" > Submit </Button>
           </Grid>
            <Grid>
            <Pagination id = "pagination" count={5} page = {count} color="primary"  onChange={handleChange} />
            </Grid>
       </Grid>
-    
-
     </form>
+  
   )
 }
 

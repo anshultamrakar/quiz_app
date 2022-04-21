@@ -6,8 +6,10 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-const Form = ({handleInput , handleSubmit , formData }) => {
+const Form = ({handleInput, handleSubmit ,formData}) => {
     
+
+
 
   return (
     <form className='Form' onSubmit={handleSubmit}  >
@@ -20,7 +22,6 @@ const Form = ({handleInput , handleSubmit , formData }) => {
     <FormControlLabel value="other" control={<Radio required = {true} />} label="Other" />
   </RadioGroup>
 </FormControl>
-
 <FormControl   component="fieldset">
 <FormLabel component="legend">Please select your language</FormLabel>
   <RadioGroup  value = {formData.language} onChange = {handleInput}  aria-label="language" name="language" >
@@ -28,12 +29,7 @@ const Form = ({handleInput , handleSubmit , formData }) => {
     <FormControlLabel value="JavaScript" control={<Radio required = {true}  />} label="JavaScript" />
   </RadioGroup>
 </FormControl>
-
-<Button type = "submit" variant="contained" color="secondary">
-  Submit
-</Button>
-
-
+<Button type = "submit" variant="contained" color="secondary">Submit</Button>
     </form>
   )
 }

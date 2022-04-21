@@ -45,12 +45,23 @@ html{
     gap : 50px;
 }
 
-.progress-btn{
+.progress-bar{
  display: flex;
  flex-direction: row;
  justify-content: center;
  align-items: center;
  gap : 10px;
  margin-top: 80px;
-
 } 
+
+.btn{
+  background-color: "pink";
+}
+
+.score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
