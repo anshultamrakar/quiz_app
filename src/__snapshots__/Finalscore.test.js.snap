@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Finalscore/> cases Renders correctly and set states 1`] = `ShallowWrapper {}`;

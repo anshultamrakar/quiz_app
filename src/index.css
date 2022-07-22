@@ -54,14 +54,17 @@ html{
  margin-top: 80px;
 } 
 
-.btn{
-  background-color: "pink";
-}
+
 
 .score{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
+}
+
+     
+.scoreboard{
     margin-top: 100px;
 }

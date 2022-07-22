@@ -1,21 +1,28 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import { Button, FormControl, FormLabel, FormControlLabel, RadioGroup , Radio} from '@material-ui/core';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { Button, FormControl, FormLabel, FormControlLabel, RadioGroup , Radio , Grid , Paper} from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination'
 import react from './Data/react.json'
 import javascript from './Data/javascript.json'
 import { useState , useEffect } from 'react'
+import { useHistory , useLocation } from 'react-router-dom'
 
 
 
 
 
-const Test = ({formData, newHandleSubmit, optionVal , setOptionVal}) => {
+const Test = () => {
+
+ const history = useHistory()
+ const location = useLocation()
 
 
-const [lan]  = useState(formData.language)
+const [lan]  = useState(location.state.language)
 const [count , setCount] = useState(1)
-
+const [optionVal , setOptionVal] = useState([])
 const [color1 , setColor1] = useState(0)
 const [color2 , setColor2] = useState(0)
 const [color3, setColor3] = useState(0)
@@ -24,21 +31,28 @@ const [color5 , setColor5] = useState(0)
 const [data , setData] = useState([])
 
  
+useEffect(() => {
+  if(lan === "ReactJS"){
+    setData(react)
+  }else{
+    setData(javascript)
+  }
+},[lan])
 
 
-   
-  useEffect(() => {
-    if(lan === "ReactJS"){
-      setData(react)
-    }else{
-      setData(javascript)
-    }
-  },[lan])
 
+const handleSubmit = (e) => {
+  e.preventDefault()
+  history.push({
+    pathname: "/finalscore",
+    state : {
+      selectedAnswer : optionVal,
+      language : lan
+    } ,
+  });
+}
 
- 
-
-  const handleInputValue = (e, id) => {
+    const handleInputValue = (e, id) => {
      e.preventDefault()
      for(let i = 1 ; i <= 5 ; i++){
       if(e.target.name === 'option'+i){
@@ -63,10 +77,10 @@ const progressBar = (attempts) => {
     setColor3(true)
  }
       if (attempts === 4){
-  setColor4(true)
+     setColor4(true)
  }
       if (attempts === 5){
-  setColor5(true)
+       setColor5(true)
     }
   }
 
@@ -81,16 +95,25 @@ const trigerBtn = (trigger_count) => {
   
 
   return (
- <form id="submitForm" autoComplete="off"  className='Test'  onSubmit = {newHandleSubmit}>
-      <Grid container className="mainForm" >
-        <Grid className = "progress-bar">
-        <Button variant="contained"  style = {{ backgroundColor : color1 ? "red" : "pink"}} onClick = {() => trigerBtn(1)} >1</Button>
-        <Button variant="contained"  style = {{ backgroundColor : color2 ? "red" : "pink"}} onClick = {() => trigerBtn(2)} >2</Button>
-        <Button variant="contained"  style = {{ backgroundColor : color3 ? "red" : "pink"}} onClick = {() => trigerBtn(3)} >3</Button>
-        <Button variant="contained"  style = {{ backgroundColor : color4 ? "red" : "pink"}} onClick = {() => trigerBtn(4)} >4</Button>
-        <Button variant="contained"  style = {{ backgroundColor : color5 ? "red" : "pink"}} onClick = {() => trigerBtn(5)} >5</Button>
+    <Paper>
+    <header className = "Header">
+    <AppBar position="static" >
+         <Toolbar>
+         <Typography> Welcome to the test  </Typography>
+         </Toolbar>
+    </AppBar> 
+</header>
+  
+ <form id="submitForm" autoComplete="off"  className='Test'  onSubmit = {handleSubmit}>
+      <Grid style = {{marginTop : "70px"}} spacing={10}  className="main-container" container alignItems="center" justifyContent="center" direction='column' >
+        <Grid  className="grid-wrapper-top" style={{ justifyContent : "center", alignItems : "center", gap : "20px"  }} >
+        <Button  className = "progress-bar1" variant="contained"  style = {{ backgroundColor : color1 ? "red" : "#f5f5f5"}} onClick = {() => trigerBtn(1)} >1</Button>
+        <Button  className ="progress-bar2"  style = {{ backgroundColor : color2 ? "red" : "#f5f5f5" , marginLeft : "20px"}} onClick = {() => trigerBtn(2)} >2</Button>
+        <Button   className="progress-bar3"  style = {{ backgroundColor : color3 ? "red" : "#f5f5f5", marginLeft : "20px"}} onClick = {() => trigerBtn(3)} >3</Button>
+        <Button   className="progress-bar4"  style = {{ backgroundColor : color4 ? "red" : "#f5f5f5",marginLeft : "20px"}} onClick = {() => trigerBtn(4)} >4</Button>
+        <Button  className ="progress-bar5"  style = {{ backgroundColor : color5 ? "red" : "#f5f5f5",marginLeft : "20px"}} onClick = {() => trigerBtn(5)} >5</Button>
         </Grid>
-          <Grid className='mcq'> 
+          <Grid style = {{marginTop : "70px"}} className='grid-wrapper'> 
             {data.map((mcq, index) => count === mcq.id ? (
               <FormControl key = {index} component="fieldset">
               <FormLabel  component="legend">{mcq.id}.{mcq.question}</FormLabel>
@@ -102,15 +125,15 @@ const trigerBtn = (trigger_count) => {
           </FormControl>
             ) : null)}
           </Grid>
-          <Grid> 
+          <Grid item className = "grid-wrapper"> 
             <Button type = "submit" variant="contained" color="secondary" > Submit </Button>
           </Grid>
-           <Grid>
+           <Grid className = "grid-wrapper">
            <Pagination id = "pagination" count={5} page = {count} color="primary"  onChange={handleChange} />
            </Grid>
       </Grid>
     </form>
-  
+    </Paper>
   )
 }
 

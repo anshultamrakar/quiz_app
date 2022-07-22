@@ -31,7 +31,7 @@
             "id": 5,
             "question": "Which of the following keyword is used to create a class inheritance?",
             "options": ["Create","Inherit","Extends"],
-            "answer": "Jordan Walke",
+            "answer": "Extends",
             "test": "react"
     }
 ]

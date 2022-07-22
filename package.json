@@ -15,7 +15,7 @@
     "react": "17.0.0",
     "react-dom": "17.0.0",
     "react-minimal-pie-chart": "^8.3.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
@@ -50,6 +50,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "jest": "^27.5.1",
-    "react-test-renderer": "^18.0.0"
+    "react-test-renderer": "^18.0.0",
+    "testEnvironment": "jsdom"
   }
 }
